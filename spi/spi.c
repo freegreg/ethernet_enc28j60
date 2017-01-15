@@ -29,6 +29,8 @@ unsigned char spiPutGetByte(unsigned char c) {
 		else
 			SOFT_SPI_MOSI_LOW; //Clock out current bit onto SPI Out line
 
+		SPI_Delay();
+
 		SOFT_SPI_CLK_HIGH; //Set SPI Clock line
 
 		SPI_Delay();
@@ -41,7 +43,7 @@ unsigned char spiPutGetByte(unsigned char c) {
 		SOFT_SPI_CLK_LOW; //Set SPI Clock line
 		mask = mask >> 1; //Shift mask so that next bit is written and read from SPI lines
 
-		SPI_Delay();
+
 
 	} while (mask != 0);
 
@@ -54,10 +56,7 @@ unsigned char spiPutGetByte(unsigned char c) {
 void SPI_Init(void) {
 	SPI_MOSI_INIT;
 	SPI_MISO_INIT;
-	SPI_CLK_INIT
-	;
-	SPI_CS_INIT
-	;
+	SPI_CLK_INIT;
 }
 
 void SPI_Delay(void) {
